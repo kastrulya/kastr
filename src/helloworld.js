@@ -36,18 +36,19 @@ var DropdownList = React.createClass({
                     </span>
                     <select
                         id="country"
+                        className="form-control"
                         aria-describedby="inputCountryStatus"
                         onChange={this.handleChange}
                         onBlur={this.props.validate}
                     > {listItems}</select>
                 </div>
-                <span className="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <span className="glyphicon   form-control-feedback" aria-hidden="true"></span>
                 <span id="inputCountryStatus" className="sr-only">Choose country!</span>
             </div>);
     }
 });
 
-var CommentForm = React.createClass({
+var RegisterForm = React.createClass({
     getInitialState: function () {
         return {
             name: '',
@@ -89,7 +90,7 @@ var CommentForm = React.createClass({
     },
 
     validateDate: function (value) {
-        return (typeof value === 'date' && value < Date.now);
+        return (new Date(value) < Date.now());
     },
 
     commonValidate: function (value) {
@@ -113,6 +114,9 @@ var CommentForm = React.createClass({
 
         mssgStatus.toggleClass('help-block', true);
         mssgStatus.toggleClass('sr-only', false);
+
+        $('.registerForm').find('.btn').prop('disabled', true);
+
     },
 
     markFieldValid: function (field) {
@@ -129,6 +133,10 @@ var CommentForm = React.createClass({
 
         mssgStatus.toggleClass('sr-only', true);
         mssgStatus.toggleClass('help-block', false);
+
+        if ($('.registerForm').find('.has-error'))
+
+        $('.registerForm').find('.btn').prop('disabled', true);
     },
 
     validate: function (e) {
@@ -153,7 +161,7 @@ var CommentForm = React.createClass({
     render: function () {
         return (
         <form
-            className="commentForm col-md-3"
+            className="registerForm col-md-3"
             onSubmit={this.handleSubmit}
             onBlur={this.validate}
         >
@@ -172,7 +180,7 @@ var CommentForm = React.createClass({
                     aria-describedby="inputNameStatus"
                     placeholder="Name"/>
             </div>
-            <span className="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span className="glyphicon   form-control-feedback" aria-hidden="true"></span>
             <span id="inputNameStatus" className="sr-only">Invalid name!</span>
         </div>
 
@@ -189,7 +197,7 @@ var CommentForm = React.createClass({
         aria-describedby="inputEmailStatus"
         placeholder="email"/>
         </div>
-        <span className="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span className="glyphicon   form-control-feedback" aria-hidden="true"></span>
         <span id="inputEmailStatus" className="sr-only">Invalid email!</span>
         </div>
 
@@ -207,7 +215,7 @@ var CommentForm = React.createClass({
         onChange={this.handleChange}
         aria-describedby="inputBirthStatus"/>
         </div>
-        <span className="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span className="glyphicon   form-control-feedback" aria-hidden="true"></span>
         <span id="inputBirthStatus" className="sr-only">Invalid date!</span>
         </div>
 
@@ -225,7 +233,7 @@ var CommentForm = React.createClass({
         onChange={this.handleChange}
         aria-describedby="inputPostalStatus"/>
         </div>
-        <span className="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span className="glyphicon   form-control-feedback" aria-hidden="true"></span>
         <span id="inputPostalStatus" className="sr-only">Invalid postal index!</span>
         </div>
 
@@ -244,7 +252,7 @@ var CommentForm = React.createClass({
         aria-describedby="inputPasswordStatus"
         placeholder="password"/>
         </div>
-        <span className="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span className="glyphicon   form-control-feedback" aria-hidden="true"></span>
         <span id="inputPasswordStatus" className="sr-only">The password must contain: Uppercase letters of European languages, Lowercase letters of European languages, numbers</span>
         </div>
 
@@ -262,7 +270,7 @@ var CommentForm = React.createClass({
         aria-describedby="inputSubmitPasswordStatus"
         placeholder="password once again"/>
         </div>
-        <span className="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span className="glyphicon   form-control-feedback" aria-hidden="true"></span>
         <span id="inputSubmitPasswordStatus" className="sr-only">Passwords aren't matched</span>
         </div>
 
@@ -281,6 +289,7 @@ var CommentForm = React.createClass({
         id="agree"
         type="checkbox"
         onChange={this.handleChangeAgreement}
+        required
         />I agree with terms </label>
         </div>
 
@@ -290,4 +299,4 @@ var CommentForm = React.createClass({
     }
 });
 
-ReactDOM.render(<CommentForm />, document.getElementById('content'));
+ReactDOM.render(<RegisterForm />, document.getElementById('content'));
