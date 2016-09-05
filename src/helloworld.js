@@ -221,20 +221,21 @@ var RegisterForm = React.createClass({
 
         {/*Postal index*/}
         <div className="form-group">
-        <label className="control-label" htmlFor="postal">Input postal index</label>
-        <div className="input-group">
-        <span className="input-group-addon">
-        <span className="glyphicon glyphicon-envelope"></span>
-        </span>
-        <input
-        type="text"
-        className="form-control"
-        id="postal"
-        onChange={this.handleChange}
-        aria-describedby="inputPostalStatus"/>
-        </div>
-        <span className="glyphicon   form-control-feedback" aria-hidden="true"></span>
-        <span id="inputPostalStatus" className="sr-only">Invalid postal index!</span>
+            <label className="control-label" htmlFor="postal">Input postal index</label>
+            <div className="input-group">
+                <span className="input-group-addon">
+                    <span className="glyphicon glyphicon-envelope"></span>
+                </span>
+                <input
+                type="text"
+                className="form-control"
+                id="postal"
+                onChange={this.handleChange}
+                placeholder="1223345"
+                aria-describedby="inputPostalStatus"/>
+            </div>
+            <span className="glyphicon   form-control-feedback" aria-hidden="true"></span>
+            <span id="inputPostalStatus" className="sr-only">Invalid postal index!</span>
         </div>
 
         {/*Password*/}
@@ -258,20 +259,21 @@ var RegisterForm = React.createClass({
 
         {/*Submit Password*/}
         <div className="form-group">
-        <label className="control-label" htmlFor="submit">Submit your password</label>
-        <div className="input-group">
-        <span className="input-group-addon">
-        <span className="glyphicon glyphicon-lock"></span>
-        </span>
-        <input type="password"
-        className="form-control"
-        id="submit"
-        onChange={this.handleChange}
-        aria-describedby="inputSubmitPasswordStatus"
-        placeholder="password once again"/>
-        </div>
-        <span className="glyphicon   form-control-feedback" aria-hidden="true"></span>
-        <span id="inputSubmitPasswordStatus" className="sr-only">Passwords aren't matched</span>
+            <label className="control-label" htmlFor="submit">Submit your password</label>
+            <div className="input-group">
+                <span className="input-group-addon">
+                    <span className="glyphicon glyphicon-lock"></span>
+                </span>
+                <input type="password"
+                    className="form-control"
+                    id="submit"
+                    onChange={this.handleChange}
+                    aria-describedby="inputSubmitPasswordStatus"
+                    placeholder="password once again"
+                />
+            </div>
+            <span className="glyphicon   form-control-feedback" aria-hidden="true"></span>
+            <span id="inputSubmitPasswordStatus" className="sr-only">Passwords aren't matched</span>
         </div>
 
         {/*Countries*/}
