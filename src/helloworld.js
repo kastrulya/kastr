@@ -4,15 +4,7 @@ var DropdownList = React.createClass({
     },
 
     handleChange: function (e) {
-        {/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-        }
-        var options = e.target.options;
-        var value = '';
-        for (var i = 0, l = options.length; i < l; i++) {
-            if (options[i].selected) {
-                value = options[i].value;
-            }
-        }
+        $(e.target).find(':selected').val();
         e.target.id = this.props.id;
         this.props.onChange(e);
     },
@@ -76,11 +68,8 @@ var RegisterForm = React.createClass({
 
     handleSubmit: function (e) {
         e.preventDefault();
-        var author = this.state.name.trim();
-        var text = this.state.email.trim();
-        //if (!text || !author) return;
-        //this.validate();
-        //this.setState({author: '', text: ''});
+        var name = this.state.name.trim();
+
     },
 
     validateEmail: function (value) {
@@ -119,6 +108,18 @@ var RegisterForm = React.createClass({
 
     },
 
+    isAllFieldValid: function(){
+        var form = $('.registerForm');
+        var isValid = true;
+        $(form).find('.form-group').each(function(i,item){
+            if(!$(item).hasClass('has-feedback') || $(item).hasClass('has-error')){
+                isValid = false;
+                return;
+            }
+        });
+        return isValid;
+    },
+
     markFieldValid: function (field) {
         var blockField = $(field).parent().parent();
         var iconStatus = blockField.find('.form-control-feedback');
@@ -134,9 +135,8 @@ var RegisterForm = React.createClass({
         mssgStatus.toggleClass('sr-only', true);
         mssgStatus.toggleClass('help-block', false);
 
-        if ($('.registerForm').find('.has-error'))
 
-        $('.registerForm').find('.btn').prop('disabled', true);
+        if(this.isAllFieldValid()) $('.registerForm').find('.btn').prop('disabled', false);
     },
 
     validate: function (e) {
@@ -284,7 +284,7 @@ var RegisterForm = React.createClass({
         />
 
         {/*Agreement*/}
-        <div className="checkbox">
+        <div className="checkbox form-group">
         <label><input
         id="agree"
         type="checkbox"
@@ -293,7 +293,7 @@ var RegisterForm = React.createClass({
         />I agree with terms </label>
         </div>
 
-        <input className="btn btn-default" type="submit" value="Submit"/>
+        <input className="btn btn-default" type="submit" value="Submit" disabled/>
         </form>
         );
     }
